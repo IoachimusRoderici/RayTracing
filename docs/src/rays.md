@@ -29,7 +29,7 @@ interface. More complex ray types can then be built by adding data or behavior t
 See for example [`RayWithData`](@ref) and [`StateRecorder`](@ref), which can be used to define
 ray types that carry usefull data.
 
-## Reflection Modes
+## Reflection Modes and `reflect!`
 
 Rays can interact with surfaces. The interaction between a ray and a surface can actually be
 any combination of four effects: absorption, reflection, refraction and fluorescence. However,
@@ -39,11 +39,11 @@ A reflection mode is a description of what happens to a ray when it hits a surfa
 you want can happen to a ray when it hits a surface, you just have to create a reflection mode
 with the desired behavior.
 
-Reflection modes are subtypes of [`ReflectionMode`](@ref), and they add methods to the
+Reflection modes are subtypes of [`RayTracing.ReflectionMode`](@ref), and they add methods to the
 [`reflect!`](@ref) function to describe what happens to the ray. This function takes as arguments
 the ray itself, the reflection mode, some data describing the geometry of the surface that the ray
-is reflecting on, and some data describing the material of the surface. Reflection modes can use
-all this information to perform the necessary operations on the ray.
+is reflecting on, and some data describing the material of the surface. Reflection modes use all
+this information to perform the necessary operations on the ray.
 
 The most commonly used reflection mode is probably [`SpecularReflection`](@ref), which inverts
 the direction of the ray with respect to the surface, creating a perfect, mirror-like reflection.
@@ -69,5 +69,5 @@ or whatever. Thats where ray sources come in handy.
 
 A ray source is just some iterable object that produces a sequence of rays.
 
-For example, the source [`BackwardsCameraRays`](@ref) produces a matrix of rays where each ray points to
+For example, the source [`BackwardCameraRays`](@ref) produces a matrix of rays where each ray points to
 the direction viewed by the corresponding pixel on a camera image. This is useful for backwards ray tracing.

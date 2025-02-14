@@ -18,6 +18,7 @@ makedocs(
         "Home" => "index.md",
         "rays.md",
         "scenes.md",
+        "the_ray_tracing_algorithm.md",
         "plots.md",
         "api_reference.md"
     ]
