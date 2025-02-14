@@ -6,9 +6,6 @@ DocMeta.setdocmeta!(RayTracing, :DocTestSetup, :(using RayTracing); recursive=tr
 
 MakieExtension = Base.get_extension(RayTracing, :MakieExtension)
 
-ray_pages = ["rays/AbstractRay.jl", "rays/BasicRay.jl", "rays/StepRecorder.jl"]
-scene_pages = ["scenes/AbstractScene.jl", "scenes/BallPit.jl"]
-
 makedocs(
     sitename = "RayTracing.jl",
     modules = [RayTracing, MakieExtension],
