@@ -54,8 +54,8 @@ function BackwardCameraRays{T}(;
     size[2] <= 1 && throw(ArgumentError("The width must be at least 2."))
 
     # Make an orthonormal base (right, down, forward):
-    forward = normalize(Vec3d( ismissing(dir) ? target-origin : dir ))
-    up_orthogonal = Vec3d( up - (up ⋅ forward) * forward )
+    forward = normalize(Vec3{T}( ismissing(dir) ? target-origin : dir ))
+    up_orthogonal = Vec3{T}( up - (up ⋅ forward) * forward )
     up_rotated = cos(roll)*up_orthogonal + sin(roll)*(forward×up_orthogonal)
     down = normalize(-up_rotated)
     right = normalize(down × forward)

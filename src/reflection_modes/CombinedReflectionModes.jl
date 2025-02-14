@@ -6,22 +6,24 @@ export CombinedReflectionModes
 A [`ReflectionMode`](@ref) that combines the effects of different reflection
 modes.
 
-Calling [`reflect!`](@ref) with this mode results in a call to `reflect!` with
+Calling [`reflect!`](@ref) with this mode results in one call to `reflect!` with
 each contained mode.
 
 ## Example
 
 ```jldoctest
-struct Mode1 <: ReflectionMode end
-struct Mode2 <: ReflectionMode end
-RayTracing.reflect!(ray, mode::Mode1, geometric_data, material_data) = println(material_data)
-RayTracing.reflect!(ray, mode::Mode2, geometric_data, material_data) = println(geometric_data)
+julia> struct Mode1 <: RayTracing.ReflectionMode end
 
-combined_mode = CombinedReflectionModes(Mode1(), Mode2())
-reflect!(:some_ray, combined_mode, "some geometric data", "some material data")
+julia> struct Mode2 <: RayTracing.ReflectionMode end
 
-# output
+julia> RayTracing.reflect!(ray, mode::Mode1, geometric_data, material_data) = println(material_data)
 
+julia> RayTracing.reflect!(ray, mode::Mode2, geometric_data, material_data) = println(geometric_data)
+
+julia> combined_mode = CombinedReflectionModes(Mode1(), Mode2())
+CombinedReflectionModes{Tuple{Mode1, Mode2}}((Mode1(), Mode2()))
+
+julia> reflect!(:some_ray, combined_mode, "some geometric data", "some material data")
 some material data
 some geometric data
 ```

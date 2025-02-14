@@ -1,4 +1,4 @@
-# Plots With Makie.jl
+# [Plots With Makie.jl](@id plots_page)
 
 ```@meta
 CurrentModule = MakieExtension
@@ -20,11 +20,8 @@ The name `ballpitplot` is not exported, but there is an overload for `Makie.plot
 ```@docs
 ballpitplot
 ```
-TODO: add example
 
 ## StepRecorder
 
 Argument conversion is setup from [`StepRecorder`](@ref) rays to `PointBased` plots so that
 `lines`, `scatter`, etc. can be used.
-
-TODO: add example
